@@ -1,0 +1,6 @@
+*.o
+hello
+*.swp
+*.swo
+*.d
+a.out
