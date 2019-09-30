@@ -2,8 +2,8 @@
 #include <stdint.h>
 
 //variables pour tester le init.c
-int8_t y;
-int8_t z;
+uint8_t y;
+uint8_t z;
 
 int fibo(int n){
 	if (n == 0){
@@ -19,4 +19,6 @@ int fibo(int n){
 
 int main() {
 	return (fibo(8));
+	//fibo(8);
+	//return 0;
 }
