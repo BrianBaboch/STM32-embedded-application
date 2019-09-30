@@ -21,4 +21,4 @@ SECTIONS{
 		*(.bss) *(COMMON)
 	} > SRAM1
 }
-ENTRY(main)
+ENTRY(_start)
