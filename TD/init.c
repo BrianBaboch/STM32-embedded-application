@@ -1,6 +1,8 @@
+#include <stdint.h>
+
 extern char _bstart, _bend;
 
-uint8_t *dst = &_data;
+uint8_t *dst;
 
 void init_bss(){
 	for (dst = &_bstart; dst < &_bend; dst++)
