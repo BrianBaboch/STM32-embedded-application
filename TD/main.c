@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include <stdint.h>
+
+//variables pour tester le init.c
+int8_t y;
+int8_t z;
 
 int fibo(int n){
 	if (n == 0){
