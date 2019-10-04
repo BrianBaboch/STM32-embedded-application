@@ -2,9 +2,8 @@
 
 extern char _bstart, _bend;
 
-uint8_t *dst = &_bstart;
-
 void init_bss(){
+	uint8_t *dst = &_bstart;
 	for (dst = &_bstart; dst < &_bend; dst++)
 		*dst = 0;	
 }
