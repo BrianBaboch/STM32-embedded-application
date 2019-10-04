@@ -16,16 +16,23 @@ int fibo(int n){
 		return (fibo(n-1) + fibo(n-2));
 	}
 }
+void delay (){
+	for (int i=0; i < 150000; i++){
+		asm volatile("nop");
+	}
+}
 
 int main() {
-	enum values {LED_OFF = 0, LED_YELLOW = 1, LED_BLUE = 2};
 	led_init();
 
-	for (int i=0; i < 5; i++){
+	for (int i=0; i < 10; i++){
 		led_g_on();
+		delay();
 		led_g_off();
 		led(LED_YELLOW);
+		delay();
 		led(LED_BLUE);
+		delay();
 		led(LED_OFF);
 	}	
 	return 0;
