@@ -1,48 +1,40 @@
 #include "led.h"
 #include "stm32l475xx.h"
-//#include "stm32l4xx.h"
+#include "stm32l4xx.h"
 #include <stdint.h>
-
-#define AHB2_RCC (*(volatile uint32_t *) (0x4c + 0x40021000))
-#define GPIOB_BSRR (*(volatile uint32_t *) (0x18 + 0x48000400))
-#define GPIOB_MODER (*(volatile uint32_t *) (0x00 + 0x48000400))
-#define GPIOC_MODER (*(volatile uint32_t *) (0x00 + 0x48000800))
-#define GPIOC_BSRR (*(volatile uint32_t *) (0x18 + 0x48000800))
-
-
 
 void led_init(){
 	//Activate clock for for ports B and C
-	AHB2_RCC = AHB2_RCC | (3<<1);
+	SET_BIT(RCC->AHB2ENR, RCC_AHB2ENR_GPIOBEN_Msk);
+	SET_BIT(RCC->AHB2ENR, RCC_AHB2ENR_GPIOCEN_Msk);
 	//Puts PB14 in output mode
-	GPIOB_MODER = (GPIOB_MODER & ~(3<<28)) | (1<<28);
-//	GPIOB->MODER = GPIOB->MODER | GPIO_MODER_MODE14_Msk;
+	GPIOB->MODER = (GPIOB->MODER & ~GPIO_MODER_MODE14_Msk) | GPIO_MODER_MODE14_0;
 }
 
 void led_g_on(){
 	//Sets 1 on the output of PB14
-	GPIOB_BSRR = GPIOB_BSRR | (1<<14);
+	SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS14_Msk);
 }
 
 void led_g_off(){
 	//Sets 0 on the output of PB14
-	GPIOB_BSRR = GPIOB_BSRR | (1<<30);
+	SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR14_Msk);
 }
 
 void led(int state){
 	if (state == LED_YELLOW){
 		//Puts PC9 in output mode and sets its output to 1 
-		GPIOC_MODER = (GPIOC_MODER & ~(3<<18)) | (1<<18);
-		GPIOC_BSRR = GPIOC_BSRR | (1<<9);
+		GPIOC->MODER = (GPIOC->MODER & ~GPIO_MODER_MODE9_Msk) | GPIO_MODER_MODE9_0;
+		SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS9_Msk);
 	}
 	else if (state == LED_BLUE){
 		//Puts PC9 in output mode and sets its output to 1 
-		GPIOC_MODER = (GPIOC_MODER & ~(3<<18)) | (1<<18);
-		GPIOC_BSRR = GPIOC_BSRR | (1<<25);
+		GPIOC->MODER = (GPIOC->MODER & ~GPIO_MODER_MODE9_Msk) | GPIO_MODER_MODE9_0;
+		SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR9_Msk);
 	}
 	else if (state == LED_OFF){
 		//Puts PC9 in input mode
-		GPIOC_MODER = (GPIOC_MODER & ~(3<<18));
+		GPIOC->MODER = GPIOC->MODER & ~GPIO_MODER_MODE9_Msk;
 	}
 }
 

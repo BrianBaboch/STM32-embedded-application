@@ -18,7 +18,7 @@ int fibo(int n){
 	}
 }
 void delay (){
-	for (int i=0; i < 150000; i++){
+	for (int i=0; i < 8000000; i++){
 		asm volatile("nop");
 	}
 }
