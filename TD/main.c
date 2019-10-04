@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdint.h>
+#include "led.h"
 
-//variables pour tester le init.c
-uint8_t y;
-uint8_t z;
+//variables to test init.c
+int fib;
 
 int fibo(int n){
 	if (n == 0){
@@ -18,7 +18,12 @@ int fibo(int n){
 }
 
 int main() {
-	return (fibo(8));
-	//fibo(8);
-	//return 0;
+	led_init();
+	led_g_on();
+
+	for (int i=0; i < 5; i++)
+		asm volatile("nop");
+	
+	led_g_off();
+	return 0;
 }
