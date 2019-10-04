@@ -3,7 +3,7 @@ AS = arm-none-eabi-as
 SOURCES = main.c init.c led.c
 OBJS = main.o init.o crt0.o led.o
 ASFLAGS = -mcpu=cortex-m4
-CFLAGS = -c -g -O1 -mcpu=cortex-m4
+CFLAGS = -Wall -Wextra -Werror -c -g -O1 -mcpu=cortex-m4
 FPU = -mfloat-abi=hard -mfpu=fpv4-sp-d16
 LDFLAGS = -T ld_ram.lds -nostdlib
 TARGET_ARCH = -mthumb
