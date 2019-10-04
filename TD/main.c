@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "led.h"
+#include "clocks.h"
 
 //variables to test init.c
 int fib;
@@ -23,6 +24,7 @@ void delay (){
 }
 
 int main() {
+	clocks_init();
 	led_init();
 
 	for (int i=0; i < 10; i++){

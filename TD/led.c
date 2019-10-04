@@ -1,4 +1,6 @@
 #include "led.h"
+#include "stm32l475xx.h"
+//#include "stm32l4xx.h"
 #include <stdint.h>
 
 #define AHB2_RCC (*(volatile uint32_t *) (0x4c + 0x40021000))
@@ -14,6 +16,7 @@ void led_init(){
 	AHB2_RCC = AHB2_RCC | (3<<1);
 	//Puts PB14 in output mode
 	GPIOB_MODER = (GPIOB_MODER & ~(3<<28)) | (1<<28);
+//	GPIOB->MODER = GPIOB->MODER | GPIO_MODER_MODE14_Msk;
 }
 
 void led_g_on(){
