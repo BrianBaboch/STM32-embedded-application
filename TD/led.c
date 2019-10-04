@@ -20,7 +20,7 @@ void led_g_off(){
 	GPIOB_BSRR = GPIOB_BSRR | (1<<30);
 }
 
-void led(char state){
+void led(int state){
 	enum values {LED_OFF = 0, LED_YELLOW = 1, LED_BLUE = 2};
 	if (state == LED_YELLOW){
 		GPIOC_MODER = (GPIOC_MODER & ~(3<<18)) | (1<<18);

@@ -18,12 +18,15 @@ int fibo(int n){
 }
 
 int main() {
+	enum values {LED_OFF = 0, LED_YELLOW = 1, LED_BLUE = 2};
 	led_init();
-	led_g_on();
 
-	for (int i=0; i < 5; i++)
-		asm volatile("nop");
-	
-	led_g_off();
+	for (int i=0; i < 5; i++){
+		led_g_on();
+		led_g_off();
+		led(LED_YELLOW);
+		led(LED_BLUE);
+		led(LED_OFF);
+	}	
 	return 0;
 }
