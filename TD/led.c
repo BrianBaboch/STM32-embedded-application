@@ -7,7 +7,10 @@
 #define GPIOC_MODER (*(volatile uint32_t *) (0x00 + 0x48000800))
 #define GPIOC_BSRR (*(volatile uint32_t *) (0x18 + 0x48000800))
 
+
+
 void led_init(){
+	//activate clock for for ports B and C
 	AHB2_RCC = AHB2_RCC | (3<<1);
 	GPIOB_MODER = (GPIOB_MODER & ~(3<<28)) | (1<<28);
 }
@@ -21,7 +24,6 @@ void led_g_off(){
 }
 
 void led(int state){
-	enum values {LED_OFF = 0, LED_YELLOW = 1, LED_BLUE = 2};
 	if (state == LED_YELLOW){
 		GPIOC_MODER = (GPIOC_MODER & ~(3<<18)) | (1<<18);
 		GPIOC_BSRR = GPIOC_BSRR | (1<<9);
