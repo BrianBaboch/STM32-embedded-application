@@ -1,5 +1,6 @@
 #include "led.h"
 #include <stdint.h>
+#include <stm32l475xx.h>
 
 #define AHB2_RCC (*(volatile uint32_t *) (0x4c + 0x40021000))
 #define GPIOB_BSRR (*(volatile uint32_t *) (0x18 + 0x48000400))
@@ -13,6 +14,7 @@ void led_init(){
 	//Activate clock for for ports B and C
 	AHB2_RCC = AHB2_RCC | (3<<1);
 	//Puts PB14 in output mode
+	SET_BIT(GPIOB_MODER,GPIO_MODE_14_0);
 	GPIOB_MODER = (GPIOB_MODER & ~(3<<28)) | (1<<28);
 }
 
