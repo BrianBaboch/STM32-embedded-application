@@ -2,9 +2,11 @@
 #include <stdint.h>
 #include "led.h"
 #include "clocks.h"
+#include "uart.h"
 
 //variables to test init.c
 int fib;
+uint8_t rx = 0;
 
 int fibo(int n){
 	if (n == 0){
@@ -24,18 +26,10 @@ void delay (){
 }
 
 int main() {
+	fib = 1;
 	clocks_init();
-	led_init();
-
-	for (int i=0; i < 10; i++){
-		led_g_on();
-		delay();
-		led_g_off();
-		led(LED_YELLOW);
-		delay();
-		led(LED_BLUE);
-		delay();
-		led(LED_OFF);
-	}	
+	uart_init();
+	uart_putchar('a');
+	rx = uart_getchar();
 	return 0;
 }
