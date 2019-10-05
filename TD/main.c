@@ -27,9 +27,16 @@ void delay (){
 
 int main() {
 	fib = 1;
+	uint8_t * str = "hello world";
 	clocks_init();
 	uart_init();
 	uart_putchar('a');
-	rx = uart_getchar();
+//	uart_putchar('\n');
+//	uart_putchar('b');
+//	uart_putchar('\n');
+//	uart_putchar('c');
+//	uart_putchar('\n');
+	//uart_puts(str);
+	//rx = uart_getchar();
 	return 0;
 }
