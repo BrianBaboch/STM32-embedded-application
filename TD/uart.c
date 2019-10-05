@@ -14,7 +14,6 @@ void uart_init(){
 //	GPIOB->AFR[0] |= 0x01 << (6 * 4);
 //	GPIOB->AFR[0] |= 0x01 << (7 * 4);
 
-
 	//Activate clock for USART1
 	SET_BIT(RCC->APB2ENR, RCC_APB2ENR_USART1EN_Msk);
 	//Choose PCLK as clock for USART1
@@ -23,10 +22,12 @@ void uart_init(){
 	SET_BIT(RCC->APB2RSTR, RCC_APB2RSTR_USART1RST_Msk);
 	//Set Baud rate to 115200 bauds
 	USART1->BRR = (USART1->BRR & ~(USART_BRR_DIV_FRACTION_Msk + 
-		USART_BRR_DIV_MANTISSA_Msk)) | 0x2b6;
+		USART_BRR_DIV_MANTISSA_Msk)) | 0x271;
+//0x2b6
 	//Configure mode 8N1 and oversampling to 16
 	USART1->CR1 = (USART1->CR1 & ~USART_CR1_M_Msk);
 	USART1->CR1 = (USART1->CR1 & ~USART_CR1_OVER8_Msk);
+	USART1->CR1 = (USART1->CR1 & ~USART_CR1_PCE);
 	//Activate USART, Transmitter and receiver
 	SET_BIT(USART1->CR1, USART_CR1_TE_Msk);
 	SET_BIT(USART1->CR1, USART_CR1_RE_Msk);
