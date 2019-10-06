@@ -61,3 +61,12 @@ void uart_gets(uint8_t *s, size_t size){
 		++i;
 	}
 }
+
+uint32_t uart_checksum(uint8_t *s, size_t size){
+	size_t i = 0;
+	uint32_t checksum;
+	while (i < size){
+		checksum = checksum + s[i];
+		++i;
+	}
+}
