@@ -24,7 +24,7 @@ void uart_init(){
 	CLEAR_BIT(RCC->APB2RSTR, RCC_APB2RSTR_USART1RST);
 	//Set Baud rate to 115200 bauds
 	USART1->BRR = (USART1->BRR & ~(USART_BRR_DIV_FRACTION + 
-		USART_BRR_DIV_MANTISSA)) | 0x271;
+		USART_BRR_DIV_MANTISSA)) | 0x2B7;
 	//Configure mode 8N1 and oversampling to 16
 	USART1->CR1 = (USART1->CR1 & ~USART_CR1_M);
 	USART1->CR1 = (USART1->CR1 & ~USART_CR1_OVER8);
@@ -39,7 +39,6 @@ void uart_init(){
 void uart_putchar(uint8_t c){
 	while(!(USART1->ISR & USART_ISR_TXE));
 	USART1->TDR = (USART1->TDR & ~USART_TDR_TDR) | c;
-	//USART1->TDR = USART1->TDR | c;
 }
 
 uint8_t uart_getchar(){
@@ -53,4 +52,12 @@ void uart_puts(const uint8_t *s){
 		s++;
 	}
 	uart_putchar('\n');
+}
+
+void uart_gets(uint8_t *s, size_t size){
+	size_t i = 0;
+	while (i < size){
+		s[i] = uart_getchar();
+		++i;
+	}
 }

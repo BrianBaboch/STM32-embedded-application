@@ -7,6 +7,7 @@
 //variables to test init.c
 int fib;
 uint8_t rx = 0;
+char str[11];
 
 int fibo(int n){
 	if (n == 0){
@@ -26,17 +27,13 @@ void delay (){
 }
 
 int main() {
-	fib = 1;
-	uint8_t * str = "hello world";
+	//uint8_t * str_out = "hello world";
 	clocks_init();
 	uart_init();
-	uart_putchar('a');
-//	uart_putchar('\n');
-//	uart_putchar('b');
-//	uart_putchar('\n');
-//	uart_putchar('c');
-//	uart_putchar('\n');
-	//uart_puts(str);
+	//uart_puts(str_out);
 	//rx = uart_getchar();
+	uart_gets(str, 11);
+	uart_puts(str);
+	//uart_puts(str);
 	return 0;
 }
