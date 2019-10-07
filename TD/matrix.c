@@ -104,3 +104,8 @@ void activate_row(int row){
 			break;
 	}
 }
+
+void send_byte(uint8_t val, int bank){
+	SB(bank);
+	int pos = (1 << 8);
+}
