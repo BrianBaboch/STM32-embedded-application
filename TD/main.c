@@ -3,6 +3,7 @@
 #include "led.h"
 #include "clocks.h"
 #include "uart.h"
+#include "matrix.h"
 
 //variables to test init.c
 int fib;
@@ -22,18 +23,17 @@ int fibo(int n){
 	}
 }
 void delay (){
-	for (int i=0; i < 8000000; i++){
+	for (int i=0; i < 80000000; i++){
 		asm volatile("nop");
 	}
 }
 
 int main() {
 	clocks_init();
-	uart_init();
-	//Receives 1000 characters sent from checksum.py
-	uart_gets(str, 1000);
-	//Calculates the checksum of the received characters
-	check = uart_checksum(str, 1000);
+	matrix_init();
+	activate_row(1);
+	delay();
+	deactivate_rows();
 	delay();
 	return 0;
 }
