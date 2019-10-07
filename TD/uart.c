@@ -64,7 +64,7 @@ void uart_gets(uint8_t *s, size_t size){
 
 uint32_t uart_checksum(uint8_t *s, size_t size){
 	size_t i = 0;
-	uint32_t checksum;
+	uint32_t checksum=0;
 	while (i < size){
 		checksum = checksum + s[i];
 		++i;

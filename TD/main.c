@@ -7,7 +7,7 @@
 //variables to test init.c
 int fib;
 uint8_t rx = 0;
-char str[10000];
+uint8_t str[10000];
 uint32_t check = 0;
 
 int fibo(int n){
