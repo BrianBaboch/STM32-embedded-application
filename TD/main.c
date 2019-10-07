@@ -22,18 +22,32 @@ int fibo(int n){
 		return (fibo(n-1) + fibo(n-2));
 	}
 }
+/*
 void delay (){
 	for (int i=0; i < 80000000; i++){
 		asm volatile("nop");
 	}
 }
-
+*/
 int main() {
 	clocks_init();
 	matrix_init();
-	activate_row(1);
-	delay();
+	/*
+	for (int i = 0; i < 10; ++i){
+		test_pixels();
+		deactivate_rows();
+		delay();
+	}
+	*/
+	//test_pixels();
 	deactivate_rows();
 	delay();
+	delay();
+	activate_row(0);
+	delay();
+	ROW0(0);
+	deactivate_rows();
+	delay();
+	activate_row(1);
 	return 0;
 }

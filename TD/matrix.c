@@ -63,6 +63,8 @@ void matrix_init(){
 	}
 	//Set RST to 1
 	SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS3);
+	//Puts 1 in bank0
+	//init_bank0();
 }
 
 void deactivate_rows(){
@@ -107,7 +109,8 @@ void activate_row(int row){
 
 void send_byte(uint8_t val, int bank){
 	SB(bank);
-	int msk = (1 << 8);
+	//int msk = (1 << 8);
+	int msk = 0x80;
 	for (int i = 1; i <= 8; ++i){
 		if(val & msk){
 			SDA(1);
@@ -116,11 +119,45 @@ void send_byte(uint8_t val, int bank){
 			SDA(0);
 		}
 		pulse_SCK;
-		msk = (1 << (8-i));
+		//msk = (1 << (8-i));
+		msk = msk/2;
+	}
+}
+
+void mat_set_row(int row, const rgb_color *val){
+	int i = 7;
+	activate_row(row);
+	while (i >= 0){
+		send_byte(val[i].b, 1);
+		//pulse_LAT;
+		//send_byte(val[i].g, 1);
+		//pulse_LAT;
+		//send_byte(val[i].r, 1);
+		pulse_LAT;
+		delay();
+		--i;
 	}
 	//pulse_LAT;
 }
 
-void mat_set_row(int row, const rgb_color *val){
+void init_bank0(){
+	send_byte(0xFF, 0);
+	pulse_LAT;
+}
 
+void test_pixels(){
+	rgb_color col[8];
+	for (int i = 0; i < 8; ++i){
+		col[i].r = col[i].b = col[i].g = 255 - (i+1);
+	}
+	for (int i =0; i < 8; ++i){
+		mat_set_row(i , col);
+		delay();
+	}
+}
+
+void delay (){
+	for (int i=0; i < 800000; i++){
+		asm volatile("nop");
+	}
 }
