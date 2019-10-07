@@ -69,4 +69,5 @@ uint32_t uart_checksum(uint8_t *s, size_t size){
 		checksum = checksum + s[i];
 		++i;
 	}
+	return checksum;
 }

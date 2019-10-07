@@ -7,7 +7,8 @@
 //variables to test init.c
 int fib;
 uint8_t rx = 0;
-char str[11];
+char str[10000];
+uint32_t check = 0;
 
 int fibo(int n){
 	if (n == 0){
@@ -27,13 +28,12 @@ void delay (){
 }
 
 int main() {
-	//uint8_t * str_out = "hello world";
 	clocks_init();
 	uart_init();
-	//uart_puts(str_out);
-	//rx = uart_getchar();
-	uart_gets(str, 11);
-	uart_puts(str);
-	//uart_puts(str);
+	//Receives 1000 characters sent from checksum.py
+	uart_gets(str, 1000);
+	//Calculates the checksum of the received characters
+	check = uart_checksum(str, 1000);
+	delay();
 	return 0;
 }
