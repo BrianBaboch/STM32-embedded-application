@@ -40,10 +40,16 @@
 	LAT(0); for(int i=0; i < 3; ++i) asm volatile ("nop"); \
 	LAT(1); for(int i=0; i < 3; ++i) asm volatile ("nop"); } while(0)
 
+typedef struct {
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+} rgb_color;
 
 void matrix_init();
 void deactivate_rows();
 void activate_row(int row);
 void send_byte(uint8_t val, int bank);
+void mat_set_row(int row, const rgb_color *val);
 
 #endif

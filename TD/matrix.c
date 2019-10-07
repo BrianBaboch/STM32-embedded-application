@@ -107,5 +107,20 @@ void activate_row(int row){
 
 void send_byte(uint8_t val, int bank){
 	SB(bank);
-	int pos = (1 << 8);
+	int msk = (1 << 8);
+	for (int i = 1; i <= 8; ++i){
+		if(val & msk){
+			SDA(1);
+		}
+		else{
+			SDA(0);
+		}
+		pulse_SCK;
+		msk = (1 << (8-i));
+	}
+	//pulse_LAT;
+}
+
+void mat_set_row(int row, const rgb_color *val){
+
 }
