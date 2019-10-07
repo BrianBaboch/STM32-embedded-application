@@ -7,7 +7,7 @@ TARGET_MACH = -mcpu=cortex-m4
 TARGET_ARCH = -mcpu=cortex-m4
 CFLAGS = -c -g -O1
 CFLAGS += -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
-#CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 CPPFLAGS = -ICMSIS/Device/ST/STM32L4xx/Include -ICMSIS/Include
 LDFLAGS = -T ld_ram.lds -nostdlib
 
