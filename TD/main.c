@@ -32,22 +32,17 @@ void delay (){
 int main() {
 	clocks_init();
 	matrix_init();
-	/*
+/*
 	for (int i = 0; i < 10; ++i){
 		test_pixels();
+		delay();
+		delay();
 		deactivate_rows();
 		delay();
 	}
-	*/
-	//test_pixels();
-	deactivate_rows();
-	delay();
-	delay();
-	activate_row(0);
-	delay();
-	ROW0(0);
-	deactivate_rows();
-	delay();
-	activate_row(1);
+*/
+	test_pixels();
+	delay();	
+	//deactivate_rows();
 	return 0;
 }
