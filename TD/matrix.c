@@ -125,6 +125,7 @@ void send_byte(uint8_t val, int bank){
 }
 
 void mat_set_row(int row, const rgb_color *val){
+	deactivate_rows();
 	int i = 7;
 	activate_row(row);
 	while (i >= 0){
@@ -142,6 +143,7 @@ void init_bank0(){
 }
 
 void test_pixels(){
+	deactivate_rows();
 	rgb_color red[8];
 	rgb_color green[8];
 	rgb_color blue[8];
@@ -159,6 +161,7 @@ void test_pixels(){
 		delay();
 		mat_set_row(j , blue);
 		delay();
+		deactivate_rows();
 	}
 }
 
