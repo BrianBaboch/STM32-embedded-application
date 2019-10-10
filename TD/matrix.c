@@ -1,4 +1,5 @@
 #include "matrix.h"
+extern uint8_t _image_start, _image_end;
 
 void matrix_init(){
 	//Activate clock of port B
@@ -125,9 +126,7 @@ void send_byte(uint8_t val, int bank){
 }
 
 void mat_set_row(int row, const rgb_color *val){
-	deactivate_rows();
 	int i = 7;
-	activate_row(row);
 	while (i >= 0){
 		send_byte(val[i].b, 1);
 		send_byte(val[i].g, 1);
@@ -135,11 +134,18 @@ void mat_set_row(int row, const rgb_color *val){
 		--i;
 	}
 	pulse_LAT;
+	activate_row(row);
 }
 
 void init_bank0(){
 	send_byte(0xFF, 0);
 	pulse_LAT;
+}
+
+void delay (){
+	for (int i=0; i < 8000000; i++){
+		asm volatile("nop");
+	}
 }
 
 void test_pixels(){
@@ -165,8 +171,32 @@ void test_pixels(){
 	}
 }
 
-void delay (){
-	for (int i=0; i < 8000000; i++){
-		asm volatile("nop");
+void static_image(){
+	uint8_t *ptr = &_image_start;
+	rgb_color row0[8];
+	rgb_color row1[8];
+	rgb_color row2[8];
+	rgb_color row3[8];
+	rgb_color row4[8];
+	rgb_color row5[8];
+	rgb_color row6[8];
+	rgb_color row7[8];
+	rgb_color * rows[8] = {row0, row1, row2, row3, row4, row5, row6, row7};
+	for (int j = 0; j < 8; ++j){
+		for(int i = 0; i < 8; ++i){
+			(rows[j])[i].r = *ptr;
+			++ptr;
+			(rows[j])[i].g = *ptr;
+			++ptr;
+			(rows[j])[i].b = *ptr;
+			++ptr;
+		}
+	}
+
+	while (1){
+		for(int i = 0; i < 8; ++i){
+			mat_set_row(i, rows[i]);
+			deactivate_rows();
+		}
 	}
 }

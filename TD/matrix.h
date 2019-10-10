@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include "stm32l475xx.h"
 #include "stm32l4xx.h"
 
@@ -51,7 +52,8 @@ void activate_row(int row);
 void send_byte(uint8_t val, int bank);
 void mat_set_row(int row, const rgb_color *val);
 void init_bank0();
-void test_pixels();
 void delay();
+void test_pixels();
+void static_image();
 
 #endif

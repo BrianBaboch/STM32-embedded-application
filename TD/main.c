@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include "led.h"
 #include "clocks.h"
 #include "uart.h"
@@ -33,7 +34,10 @@ int main() {
 	clocks_init();
 	matrix_init();
 	deactivate_rows();
-	test_pixels();
+	//test_pixels();
+	static_image();
 	//deactivate_rows();
 	return 0;
 }
+
+
