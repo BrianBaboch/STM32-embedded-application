@@ -5,6 +5,7 @@
 #include "clocks.h"
 #include "uart.h"
 #include "matrix.h"
+#include "irq.h"
 
 
 int fibo(int n){
@@ -22,6 +23,7 @@ int fibo(int n){
 int main() {
 	clocks_init();
 	matrix_init();
+	irq_init();
 	deactivate_rows();
 	static_image();
 	return 0;
