@@ -3,13 +3,15 @@
 
 #include <stdio.h>
 #include <stdint.h>
-//#include "cmsis_gcc.h"
-//#include "core_cm4.h"
 #include "stm32l475xx.h"
 #include "stm32l4xx.h"
+#include "buttons.h"
 
 #define MAKE_DEFAULT_HANDLER(interruption) void __attribute__((weak)) \
-	__attribute__((weak)) interruption(void){__disable_irq(void); while(1){}}
+	__attribute__((weak)) interruption(void){__disable_irq(); while(1){}}
+
+#define BUTTONS_HANDLER(interruption) void __attribute__((weak)) \
+	__attribute__((weak)) interruption(void){buttons_handler();}
 
 void irq_init(void);
 
