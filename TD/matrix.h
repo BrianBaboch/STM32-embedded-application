@@ -33,6 +33,7 @@
 	else SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS0); } while(0)
 #define ROW7(X) do { if (X==0) SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR3); \
 	else SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS3); } while(0)  
+
 #define pulse_SCK do { SCK(0); for(int i=0; i < 3; ++i) asm volatile ("nop"); \
 	SCK(1); for(int i=0; i < 3; ++i) asm volatile ("nop"); \
 	SCK(0); for(int i=0; i < 3; ++i) asm volatile ("nop"); } while(0)
