@@ -28,3 +28,5 @@ SECTIONS{
 	} > SRAM1
 }
 ENTRY(_start)
+
+_stack = ORIGIN(SRAM2) + LENGTH(SRAM2);

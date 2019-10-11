@@ -3,7 +3,7 @@
 	.global _image
     .thumb
 _start:
-	ldr sp, =0x10008000
+	ldr sp, =_stack
 	bl init_bss
     bl main
 _exit:
