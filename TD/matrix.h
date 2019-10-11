@@ -56,4 +56,4 @@ void delay();
 void test_pixels();
 void static_image();
 
-#endif
+#endif //MATRIX_H

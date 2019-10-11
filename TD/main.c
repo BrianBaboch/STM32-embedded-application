@@ -36,7 +36,6 @@ int main() {
 	deactivate_rows();
 	//test_pixels();
 	static_image();
-	//deactivate_rows();
 	return 0;
 }
 
