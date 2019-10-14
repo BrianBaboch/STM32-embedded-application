@@ -1,7 +1,7 @@
 #include "uart.h"
 #include "stm32l475xx.h"
 #include "stm32l4xx.h"
-void uart_init(){
+void uart_init(int baudrate){
 	//Activate clock of port B
 	SET_BIT(RCC->AHB2ENR, RCC_AHB2ENR_GPIOBEN);
 	//Disable USART
@@ -24,7 +24,7 @@ void uart_init(){
 	CLEAR_BIT(RCC->APB2RSTR, RCC_APB2RSTR_USART1RST);
 	//Set Baud rate to 115200 bauds
 	USART1->BRR = (USART1->BRR & ~(USART_BRR_DIV_FRACTION + 
-		USART_BRR_DIV_MANTISSA)) | 0x2B7;
+		USART_BRR_DIV_MANTISSA)) | ((80*1000000)/baudrate);// Decimal
 	//Configure mode 8N1 and oversampling to 16
 	USART1->CR1 = (USART1->CR1 & ~USART_CR1_M);
 	USART1->CR1 = (USART1->CR1 & ~USART_CR1_OVER8);

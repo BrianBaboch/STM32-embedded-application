@@ -8,6 +8,7 @@
 #include "irq.h"
 #include "buttons.h"
 
+rgb_color frame [8][8];
 
 int fibo(int n){
 	if (n == 0){
