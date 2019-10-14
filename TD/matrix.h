@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <stdlib.h>
 #include "stm32l475xx.h"
 #include "stm32l4xx.h"
 

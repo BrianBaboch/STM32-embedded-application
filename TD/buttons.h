@@ -8,6 +8,6 @@
 #include "led.h"
 
 void buttons_init();
-void buttons_handler();
+void EXTI15_10_IRQHandler();
 
 #endif //BUTTONS_H

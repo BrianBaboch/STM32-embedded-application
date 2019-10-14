@@ -10,9 +10,6 @@
 #define MAKE_DEFAULT_HANDLER(interruption) void __attribute__((weak)) \
 	__attribute__((weak)) interruption(void){__disable_irq(); while(1){}}
 
-#define BUTTONS_HANDLER(interruption) void __attribute__((weak)) \
-	__attribute__((weak)) interruption(void){buttons_handler();}
-
 void irq_init(void);
 
 #endif //IRQ_H

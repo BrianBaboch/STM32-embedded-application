@@ -5,6 +5,9 @@ MEMORY{
 }
 
 SECTIONS{
+	.vtor : {	
+		*(vtor)	
+	} > SRAM1
 	.text : {
 		*(.text)
 	} > SRAM1
