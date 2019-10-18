@@ -10,16 +10,16 @@ SECTIONS{
 	} > SRAM1
 	.text : {
 		*(.text)
-	} > SRAM1
+	} > flash
 
-	.rodata : {
+	.rodata : AT (ADDR(.text) + SIZEOF(.text)){
 		*(.rodata)
 
 	} > SRAM1
 
-	.data : {
+	.data : AT (ADDR(.rodata) + SIZEOF(.rodata)){
 		*(.data)
-	} > SRAM1
+	} > SRAM1 
 
 	.bss : {
 		_bstart = .;

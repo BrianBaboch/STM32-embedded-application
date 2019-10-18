@@ -1,6 +1,5 @@
     .syntax unified
     .global _start 
-	.global _image
     .thumb
 _start:
 	ldr sp, =_stack
