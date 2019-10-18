@@ -19,9 +19,6 @@ SECTIONS{
 
 	.data : {
 		*(.data)
-		_image_start = .;
-		*(.image)
-		_image_end = .;
 	} > SRAM1
 
 	.bss : {

@@ -1,5 +1,5 @@
 #include "matrix.h"
-extern uint8_t _image_start, _image_end;
+extern uint8_t _binary_image_raw_start;
 
 void matrix_init(){
 	//Activate clock of port B
@@ -126,6 +126,12 @@ void mat_set_row(int row, const rgb_color *val){
 		send_byte(val[i].r, 1);
 		--i;
 	}
+	//
+	deactivate_rows();
+	for (int i=0; i < 200; i++){
+		asm volatile("nop");
+	}
+	//
 	pulse_LAT;
 	activate_row(row);
 }
@@ -165,7 +171,7 @@ void test_pixels(){
 }
 
 void static_image(){
-	uint8_t *ptr = &_image_start;
+	uint8_t *ptr = &_binary_image_raw_start;
 	rgb_color row0[8];
 	rgb_color row1[8];
 	rgb_color row2[8];
@@ -189,10 +195,12 @@ void static_image(){
 	while (1){
 		for(int i = 0; i < 8; ++i){
 			mat_set_row(i, rows[i]);
+			/*
 			for (int i=0; i < 1000; i++){
 				asm volatile("nop");
 			}
 			deactivate_rows();
+			*/
 		}
 	}
 }

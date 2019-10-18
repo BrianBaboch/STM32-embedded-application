@@ -1,7 +1,7 @@
 CC = arm-none-eabi-gcc
 AS = arm-none-eabi-as
 SOURCES = main.c init.c led.c uart.c matrix.c irq.c buttons.c
-OBJS = main.o init.o crt0.o led.o uart.o matrix.o irq.o buttons.o
+OBJS = main.o init.o crt0.o led.o uart.o matrix.o irq.o buttons.o image.o
 PRE_OBJS = clocks.o
 TARGET_MACH = -mcpu=cortex-m4
 TARGET_ARCH = -mcpu=cortex-m4
@@ -18,6 +18,9 @@ main: $(OBJS) $(PRE_OBJS)
 
 %.d : %.c
 	$(CC) $(CPPFLAGS) -M -MF $@ -MP $<
+
+image.o: image.raw
+	arm-none-eabi-objcopy -I binary -O elf32-littlearm -B arm image.raw image.o
 
 
 gdb:

@@ -8,7 +8,3 @@ _start:
     bl main
 _exit:
 	bl _exit
-
-_image:
-	.section .image
-	.incbin "image.raw"
