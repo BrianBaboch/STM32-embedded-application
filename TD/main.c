@@ -9,24 +9,21 @@
 #include "buttons.h"
 
 rgb_color frame [8][8];
-
-int fibo(int n){
-	if (n == 0){
-		return 0;
-	}
-	else if (n == 1){
-		return 1;
-	}
-	else{
-		return (fibo(n-1) + fibo(n-2));
-	}
-}
+int matrix_row = 0;
+int matrix_col = 0;
+int matrix_color = 0; 
 
 int main() {
 	clocks_init();
 	led_init();
 	matrix_init();
 	irq_init();
+	uart_init(38400);
 	buttons_init();
+	while (1){
+		for(int i = 0; i < 8; ++i){
+			mat_set_row(i, frame[i]);
+		}
+	}
 	return 0;
 }

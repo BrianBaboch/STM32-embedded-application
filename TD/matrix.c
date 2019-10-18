@@ -126,12 +126,10 @@ void mat_set_row(int row, const rgb_color *val){
 		send_byte(val[i].r, 1);
 		--i;
 	}
-	//
 	deactivate_rows();
 	for (int i=0; i < 200; i++){
 		asm volatile("nop");
 	}
-	//
 	pulse_LAT;
 	activate_row(row);
 }
@@ -195,12 +193,6 @@ void static_image(){
 	while (1){
 		for(int i = 0; i < 8; ++i){
 			mat_set_row(i, rows[i]);
-			/*
-			for (int i=0; i < 1000; i++){
-				asm volatile("nop");
-			}
-			deactivate_rows();
-			*/
 		}
 	}
 }
