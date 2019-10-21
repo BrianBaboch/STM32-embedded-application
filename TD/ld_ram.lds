@@ -7,19 +7,21 @@ MEMORY{
 SECTIONS{
 	.vtor : {	
 		*(vtor)	
-	} > SRAM1
+	} > flash
 	.text : {
 		*(.text)
 	} > flash
 
-	.rodata : AT (ADDR(.text) + SIZEOF(.text)){
+	.rodata : {
 		*(.rodata)
+		_roend = .;
+	} > flash
 
-	} > SRAM1
-
-	.data : AT (ADDR(.rodata) + SIZEOF(.rodata)){
+	.data : {
+		_dstart = .;
 		*(.data)
-	} > SRAM1 
+		_dend = .;
+	} > SRAM1 AT>flash 
 
 	.bss : {
 		_bstart = .;
