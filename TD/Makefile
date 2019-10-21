@@ -1,8 +1,7 @@
 CC = arm-none-eabi-gcc
 AS = arm-none-eabi-as
 SOURCES = main.c init.c led.c uart.c matrix.c irq.c buttons.c clocks.c
-OBJS = main.o init.o crt0.o led.o uart.o matrix.o irq.o buttons.o image.o
-PRE_OBJS = clocks.o
+OBJS = main.o init.o crt0.o led.o uart.o matrix.o irq.o buttons.o image.o clocks.o
 TARGET_MACH = -mcpu=cortex-m4
 TARGET_ARCH = -mcpu=cortex-m4
 CFLAGS = -c -g -O1

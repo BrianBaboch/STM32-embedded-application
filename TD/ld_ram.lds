@@ -6,11 +6,13 @@ MEMORY{
 
 SECTIONS{
 	.vtor : {	
+		_vstart = .;
 		*(vtor)	
-	} > flash
+	} > SRAM1 AT > flash
 	.text : {
 		*(.text)
-	} > flash
+		_tend = .;
+	} > SRAM1 AT > flash
 
 	.rodata : {
 		*(.rodata)
@@ -21,14 +23,19 @@ SECTIONS{
 		_dstart = .;
 		*(.data)
 		_dend = .;
-	} > SRAM1 AT>flash 
+	} > SRAM1 AT > flash 
 
 	.bss : {
 		_bstart = .;
 		*(.bss) *(COMMON)
 		_bend = .;
 	} > SRAM1
+	
+	.flash : {
+		*(.flash)
+	} > flash
 }
 ENTRY(_start)
 
 _stack = ORIGIN(SRAM2) + LENGTH(SRAM2);
+_flash = ORIGIN(flash);
