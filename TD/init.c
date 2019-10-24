@@ -10,14 +10,14 @@ __attribute__((section (".flash"))) void init_text(){
  		*dst++ = *src++;
 }
 
-__attribute__((section (".flash")))void init_data(){
+__attribute__((section (".flash"))) void init_data(){
 	uint8_t *src = &_roend;
 	uint8_t *dst = &_dstart;
 	while (dst < &_dend)
  		*dst++ = *src++;
 }
 
-__attribute__((section (".flash")))void init_bss(){
+__attribute__((section (".flash"))) void init_bss(){
 	uint8_t *dst = &_bstart;
 	for (dst = &_bstart; dst < &_bend; dst++)
 		*dst = 0;	
