@@ -17,13 +17,7 @@ int main() {
 	clocks_init();
 	led_init();
 	matrix_init();
-	irq_init();
-	uart_init(38400);
 	buttons_init();
-	while (1){
-		for(int i = 0; i < 8; ++i){
-			mat_set_row(i, frame[i]);
-		}
-	}
+	static_image();
 	return 0;
 }
