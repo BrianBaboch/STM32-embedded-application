@@ -1,7 +1,7 @@
 #include "irq.h"
 
 extern uint32_t _stack;
-extern uint32_t _start;
+extern void _start();
 
 MAKE_DEFAULT_HANDLER(NMI_Handler);
 MAKE_DEFAULT_HANDLER(HardFault_Handler);
@@ -56,7 +56,7 @@ MAKE_DEFAULT_HANDLER(EXTI15_10_IRQHandler);
 void *vector_table[] __attribute__((section ("vtor"))) = {
     // Stack and Reset Handler
     &_stack,            /* Top of stack */
-    &_start,             /* Reset handler */
+    _start,             /* Reset handler */
 
 	// ARM internal exceptions
     NMI_Handler,        /* NMI handler */

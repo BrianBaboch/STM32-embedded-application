@@ -9,10 +9,15 @@ SECTIONS{
 		_vstart = .;
 		*(vtor)	
 	} > SRAM1 AT > flash
+
 	.text : {
 		*(.text)
 		_tend = .;
 	} > SRAM1 AT > flash
+
+	.flash : {
+		*(.flash)
+	} > flash
 
 	.rodata : {
 		*(.rodata)
@@ -30,10 +35,7 @@ SECTIONS{
 		*(.bss) *(COMMON)
 		_bend = .;
 	} > SRAM1
-	
-	.flash : {
-		*(.flash)
-	} > flash
+
 }
 ENTRY(_start)
 
